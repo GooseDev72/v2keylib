@@ -1,0 +1,53 @@
+[package]
+name = "v2keylib"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.75"
+description = "Universal toolkit for V2Ray/XRay/v2fly keys: links, configs (xray/sing-box/mihomo), balancers, geo, filters, health checks"
+license = "MIT"
+keywords = ["v2ray", "xray", "sing-box", "mihomo", "vpn"]
+categories = ["network-programming", "parser-implementations"]
+
+[lib]
+name = "v2keylib"
+# rlib for Rust users, cdylib for the Python extension module
+crate-type = ["rlib", "cdylib"]
+
+[dependencies]
+base64 = "0.22"
+serde = { version = "1", features = ["derive"] }
+serde_json = { version = "1", features = ["preserve_order"] }
+serde_yaml = "0.9"
+url = "2"
+uuid = { version = "1", features = ["v4", "fast-rng"] }
+ipnet = { version = "2", features = ["serde"] }
+thiserror = "2"
+tracing = "0.1"
+rand = "0.9"
+md-5 = "0.10"
+sha2 = "0.10"
+hmac = "0.12"
+aes = "0.8"
+async-trait = "0.1"
+futures = "0.3"
+tokio = { version = "1", features = ["rt", "rt-multi-thread", "time", "net", "io-util", "macros", "sync", "process"] }
+reqwest = { version = "0.12", default-features = false, features = ["json", "rustls-tls", "gzip", "socks", "stream"] }
+maxminddb = "0.24"
+regex = "1"
+percent-encoding = "2"
+bytes = "1"
+pyo3 = { version = "0.27.2", features = ["extension-module"], optional = true }
+zip = { version = "4.2.0", features = ["deflate"] }
+
+[package.metadata.maturin]
+# The #[pymodule] is named `v2keylib`, so `import v2keylib` works as-is.
+# Build with: maturin develop --release --features python
+
+[dev-dependencies]
+tokio = { version = "1", features = ["full"] }
+tempfile = "3"
+
+[features]
+default = []
+# builds the Python extension module; leave off for Rust-only builds
+python = ["dep:pyo3"]

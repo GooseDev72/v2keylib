@@ -1,0 +1,23 @@
+[build-system]
+requires = ["maturin>=1.5,<2.0"]
+build-backend = "maturin"
+
+[project]
+name = "v2keylib"
+version = "0.1.0"
+description = "Bindings for v2keylib — V2Ray/XRay/sing-box/mihomo keys, balancers, geo and cascade"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Rust",
+    "Programming Language :: Python :: 3",
+    "Topic :: Internet :: Proxy Servers",
+]
+
+[project.urls]
+Repository = "https://example.invalid/v2keylib"
+
+[tool.maturin]
+features = ["python"]
+module-name = "v2keylib"
