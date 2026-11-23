@@ -46,10 +46,11 @@ pub fn b64_decode(input: &str) -> Result<Vec<u8>> {
         return Ok(v);
     }
 
+    let preview: String = cleaned.chars().take(24).collect();
     Err(Error::Base64(format!(
         "not valid base64 ({} chars, {})",
         cleaned.chars().count(),
-        &cleaned[..cleaned.len().min(24)]
+        preview
     )))
 }
 
